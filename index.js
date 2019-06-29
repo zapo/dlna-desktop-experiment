@@ -11,9 +11,22 @@ const { execFile } = require('child_process');
 // FIXME: Use properly generated tempfiles
 const TMP = '/tmp/video.mp4';
 
-const FFMPEG_ARGS = `-y -f x11grab -show_region 1 -s 1920x1080 -r 60 -i :0.0+0,0 -vcodec libx264 -pix_fmt yuv420p -preset ultrafast -tune zerolatency -f mpegts ${TMP}`
+const FFMPEG_ARGS = [
+  '-y',
+  '-f', 'x11grab',
+  '-show_region', '1',
+  '-s', '1920x1080',
+  '-r', '60',
+  '-i', ':0.0+0,0',
+  '-vcodec', 'libx264',
+  '-pix_fmt', 'yuv420p',
+  '-preset', 'ultrafast',
+  '-tune', 'zerolatency',
+  '-f', 'mpegts',
+  TMP
+];
 
-const recording = execFile('ffmpeg', FFMPEG_ARGS.split(' '));
+const recording = execFile('ffmpeg', FFMPEG_ARGS);
 const proxy = http.createServer((req, res) => {
   const readStream = fs.createReadStream(TMP);
 
