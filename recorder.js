@@ -3,7 +3,7 @@ const os = require('os');
 const { execFile } = require('child_process');
 
 // FIXME: Use properly generated tempfiles
-const TMP = '/tmp/video.mp4';
+const TMP = '/tmp/video.flv';
 
 const FFMPEG_ARGS = [
   '-y',
@@ -16,7 +16,7 @@ const FFMPEG_ARGS = [
   '-pix_fmt', 'yuv420p',
   '-preset', 'ultrafast',
   '-tune', 'zerolatency',
-  '-f', 'mpegts',
+  '-f', 'flv',
   TMP
 ];
 

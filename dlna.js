@@ -12,7 +12,7 @@ function start(file, onPeer) {
     const readStream = fs.createReadStream(file);
 
     res.writeHead(200, {
-      'Content-Type': 'video/mp4',
+      'Content-Type': 'video/flv',
       'Transfer-Encoding': 'chunked'
     });
 
